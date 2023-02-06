@@ -1,1 +1,21 @@
-/* You can add global styles to this file, and also import other style files */
+html,body{
+    margin: 0;
+    padding: auto;
+    box-sizing: border-box;
+    color: white;
+}
+
+ul{
+    list-style: none;
+    padding: 0;
+}
+
+a{
+    text-decoration: none;
+}
+
+body{
+    background-image: url("./assets/Imagenes/fondo.jpg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+}

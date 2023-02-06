@@ -1,0 +1,32 @@
+h2{
+    font-size: 42px;
+    max-width: 400px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+
+section{
+    width: 50%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6%;
+    margin-left: 10%;
+    margin-top: 100px;
+}
+
+section div{
+    width: 150px;
+    flex-basis: 47%;
+    text-align: center;
+}
+
+section img{
+    max-width: 200px;
+    min-width: 100px;
+}
+
+section p{
+    text-align: center;
+}

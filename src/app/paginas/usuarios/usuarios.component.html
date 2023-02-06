@@ -1,0 +1,71 @@
+<div class="contenedor">
+    <div class="izquierda">
+        <p [class] = "user.nombre">Nombre: {{user.nombre}}</p>
+        <p [hidden] = "ocultar">Apellidos: {{user.apellidos}}</p>
+        <p [hidden] = "ocultar">Correo: {{user.email}}</p>
+        <button class="{{user.nombre}}"(click)= "MostrarInfo()">Mostrar Info</button>
+        <br><br>
+        <div>
+            <h2>Insertar</h2>
+            <label for ="nombre">Nombre</label>
+            <input type="text" id="nombre" #nombre><br>
+            <label for ="apellidos">Apellidos</label>
+            <input type="text" id="apellidos" #apellidos><br>
+            <label for ="correo">Correo</label>
+            <input type="text" id="correo" #correo><br>
+            <button (click)="CambiarInfo(nombre, apellidos, correo.value)">Cambiar</button>
+        </div>
+
+        <div>
+            <h3>Modificar</h3>
+            <label for ="nombre">Nombre</label>
+            <input [(ngModel)]="user.nombre" id="nombre" #nombre><br>
+            <label for ="apellidos">Apellidos</label>
+            <input [(ngModel)]="user.apellidos" id="apellidos"><br>
+            <label for ="correo">Correo</label>
+            <input [(ngModel)]="user.email" id="correo"><br>
+        </div>
+    </div>
+
+    <div class="derecha">
+        <table border="1">
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Correo</th>
+                <th></th>
+            </tr>
+            <tr *ngFor="let u of usuarios">
+                <td>{{u.nombre}}</td>
+                <td>{{u.apellidos}}</td>
+                <td>{{u.email}}</td>
+                <td>
+                    <button *ngIf="u.password!=''" (click)="activarPassword(password)">Cambiar Contraseña</button>
+                    <input type="text" #password *ngIf="u.password!=''" style="visibility: hidden;">
+                    <ng-container *ngIf="u.password==''">No Activo</ng-container>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+
+<div class="usuarios">
+    <ng-container *ngFor="let u of usuarios; index as i">
+        <ng-container *ngIf="u.password==''">
+            <ng-container *ngTemplateOutlet="v_usuario; context:{user:u,index:i}"></ng-container>
+        </ng-container>
+    </ng-container>
+    </div>
+
+<ng-template #v_usuario let-user="user" let-i="index">
+    <div>
+        <img src="/assets/faces/face{{i+1}}.jpg" alt="">
+        <div>
+            <p><b>Nombre:</b>{{user.nombre}}</p>
+            <p><b>Apellidos:</b>{{user.apellidos}}</p>
+            <p><b>Correo:</b>{{user.email}}</p>
+        </div>
+        <button>Cambiar Contraseña</button>
+    </div>
+</ng-template>
